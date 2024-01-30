@@ -16,6 +16,9 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.all(20),
         children: [
           headher(),
+          const SizedBox(
+            height: 50,
+          ),
           bodys(),
         ],
       ),
@@ -23,41 +26,70 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget headher() {
-    return SizedBox(
+    return Center(
       child: Padding(
-        padding: const EdgeInsets.only(top: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Let's sign you in",
-              style:
-                  blueStyle.copyWith(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "Welcome back\nYou've been missed",
-              style:
-                  blueStyle.copyWith(fontSize: 18, fontWeight: FontWeight.w100),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-          ],
+        padding: const EdgeInsets.only(top: 80),
+        child: Text(
+          "Login Your Account",
+          style: blackStyle.copyWith(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
   }
 
   Widget bodys() {
-    return Card(
-      elevation: 8.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.grey,
+            blurRadius: 12,
+          ),
+        ],
       ),
-      color: Colors.white70,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [TextFormField()],
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              margin: const EdgeInsets.all(15),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  contentPadding: const EdgeInsets.all(10),
+                ),
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(15),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  contentPadding: const EdgeInsets.all(10),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text("Login"),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
