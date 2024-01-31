@@ -26,7 +26,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget headher() {
-    return Center(
+    return Align(
+      alignment: Alignment.topLeft,
       child: Padding(
         padding: const EdgeInsets.only(top: 80),
         child: Text(
