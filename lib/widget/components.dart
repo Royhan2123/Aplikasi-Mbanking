@@ -23,7 +23,7 @@ class _GetStartBtnState extends State<GetStartBtn> {
       () {
         isLoading = true;
         Future.delayed(
-          const Duration(seconds: 2),
+          const Duration(seconds: 1),
         ).then(
           (value) {
             isLoading = false;
@@ -37,34 +37,42 @@ class _GetStartBtnState extends State<GetStartBtn> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        animationDuration: const Duration(seconds: 3),
-        foregroundColor: Colors.purple,
-        backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        minimumSize: const Size(250, 45),
-      ),
-      onPressed: () {
-        loadingHandler();
-      },
-      child: Center(
-        child: isLoading
-            ? const Center(
-                child: SizedBox(
-                  width: 30,
-                  height: 30,
-                  child: CircularProgressIndicator(
-                    color: Colors.blue,
+    return GestureDetector(
+      onTap: loadingHandler,
+      child: Container(
+        margin: const EdgeInsets.only(top: 60),
+        width: 250,
+        height: 45,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            animationDuration: const Duration(seconds: 5),
+            foregroundColor: Colors.blue,
+            backgroundColor: Colors.purple,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            minimumSize: const Size(250, 45),
+          ),
+          onPressed: () {
+            loadingHandler();
+          },
+          child: Center(
+            child: isLoading
+                ?  Center(
+                    child: SizedBox(
+                      width: 30,
+                      height: 30,
+                      child: CircularProgressIndicator(
+                        color: lightBlue,
+                      ),
+                    ),
+                  )
+                : Text(
+                    "Get Started now",
+                    style: whiteStyle.copyWith(fontSize: 15),
                   ),
-                ),
-              )
-            : Text(
-                "Get Started now",
-                style: whiteStyle.copyWith(fontSize: 15),
-              ),
+          ),
+        ),
       ),
     );
   }
@@ -88,9 +96,9 @@ class SkipBtn extends StatelessWidget {
       margin: const EdgeInsets.only(top: 60),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          animationDuration: const Duration(seconds: 3),
-          foregroundColor: Colors.purple,
-          backgroundColor: Colors.blue,
+          animationDuration: const Duration(seconds: 5),
+          foregroundColor: Colors.blue,
+          backgroundColor: Colors.purple,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),

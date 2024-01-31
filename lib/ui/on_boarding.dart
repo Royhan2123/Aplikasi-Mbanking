@@ -88,7 +88,9 @@ class _OnBoardingState extends State<OnBoarding> {
                           child: animationDo(
                             index,
                             100,
-                            Image.asset(listOfItem[index].img),
+                            Image.asset(
+                              listOfItem[index].img,
+                            ),
                           ),
                         ),
 
@@ -135,14 +137,14 @@ class _OnBoardingState extends State<OnBoarding> {
                   SmoothPageIndicator(
                     controller: pageController,
                     count: listOfItem.length,
-                    effect: const ExpandingDotsEffect(
+                    effect: ExpandingDotsEffect(
                       spacing: 6.0,
                       radius: 10.0,
                       dotWidth: 10.0,
                       dotHeight: 10.0,
                       expansionFactor: 3.8,
                       dotColor: Colors.grey,
-                      activeDotColor: Colors.black,
+                      activeDotColor: lightBlue,
                     ),
                     onDotClicked: (newIndex) {
                       setState(() {

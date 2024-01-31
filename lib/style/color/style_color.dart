@@ -17,3 +17,9 @@ TextStyle greyStyle = GoogleFonts.poppins(
   color: Colors.grey,
 );
 
+Color lightBlue = const Color.fromARGB(
+  255,
+  130,
+  199,
+  255,
+);
