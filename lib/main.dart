@@ -1,6 +1,6 @@
 
 import 'package:aplikasi_mbanking/ui/login%20&%20register/login_screen.dart';
-import 'package:aplikasi_mbanking/ui/onBoarding.dart';
+import 'package:aplikasi_mbanking/ui/on_boarding.dart';
 import 'package:aplikasi_mbanking/ui/splash_screen.dart';
 import 'package:flutter/material.dart';
 

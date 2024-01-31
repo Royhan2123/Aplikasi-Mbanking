@@ -13,4 +13,7 @@ TextStyle blueStyle = GoogleFonts.poppins(
 TextStyle redStyle = GoogleFonts.poppins(
   color: Colors.red,
 );
+TextStyle greyStyle = GoogleFonts.poppins(
+  color: Colors.grey,
+);
 
