@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:aplikasi_mbanking/models/item.dart';
+import 'package:aplikasi_mbanking/models/item_models.dart';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:aplikasi_mbanking/widget/components.dart';
 import 'package:flutter/material.dart';

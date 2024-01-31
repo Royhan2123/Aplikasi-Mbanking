@@ -1,27 +1,27 @@
-class Item {
+class ItemsModel {
   final String img;
   final String title;
   final String subTitle;
 
-  Item({
+  ItemsModel({
     required this.img,
     required this.title,
     required this.subTitle,
   });
 }
 
-List<Item> listOfItem = [
-  Item(
+List<ItemsModel> listOfItem = [
+  ItemsModel(
     img: "assets/onBoarding1.png",
     title: "To Build a Better Country",
     subTitle: "Our system is helping yo to\nachieve a better goal",
   ),
-  Item(
+  ItemsModel(
     img: "assets/onBoarding2.png",
     title: "To Build a Good Portfolio",
     subTitle: "We provide tips for you so that\nyou can adapt easier",
   ),
-  Item(
+  ItemsModel(
     img: "assets/onBoarding3.png",
     title: "Start To Feel a New Life",
     subTitle:
