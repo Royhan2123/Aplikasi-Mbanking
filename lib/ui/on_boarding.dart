@@ -56,7 +56,6 @@ class _OnBoardingState extends State<OnBoarding> {
                 height: 130,
               ),
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 22, vertical: 24),
                 decoration: BoxDecoration(
@@ -90,96 +89,61 @@ class _OnBoardingState extends State<OnBoarding> {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(
-                      height: currentIndex == 2 ? 38 : 50,
+                      height: currentIndex == 2 ? 50 : 50,
                     ),
-                    currentIndex == 2
-                        ? Column(
-                            children: [
-                              Column(
-                                children: [
-                                  SizedBox(
-                                    width: double.infinity,
-                                    height: 40,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                          foregroundColor: Colors.lightBlue,
-                                          backgroundColor: Colors.purple,
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(30))),
-                                      onPressed: () {
-                                        Navigator.pushNamed(
-                                          context,
-                                          '/loginPage',
-                                        );
-                                      },
-                                      child: Text(
-                                        'Get Started',
-                                        style: whiteStyle.copyWith(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 20,
-                                  ),
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.pushNamed(
-                                        context,
-                                        '/signIn',
-                                      );
-                                    },
-                                    child: Text(
-                                      "Sign In",
-                                      style: greyStyle.copyWith(
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
-                        : Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: currentIndex == 0
-                                        ? Colors.blue
-                                        : Colors.grey,
-                                    shape: BoxShape.circle),
-                                width: 20,
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: currentIndex == 1
-                                        ? Colors.blue
-                                        : Colors.grey,
-                                    shape: BoxShape.circle),
-                                width: 20,
-                                height: 20,
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: currentIndex == 2
-                                        ? Colors.blue
-                                        : Colors.grey,
-                                    shape: BoxShape.circle),
-                                width: 20,
-                                height: 20,
-                              ),
-                            ],
+                    Row(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: currentIndex == 0
+                                  ? const Color.fromARGB(255, 100, 106, 255)
+                                  : Colors.grey,
+                              shape: BoxShape.circle),
+                          width: 15,
+                          height: 15,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: currentIndex == 1
+                                  ? const Color.fromARGB(255, 100, 106, 255)
+                                  : Colors.grey,
+                              shape: BoxShape.circle),
+                          width: 15,
+                          height: 15,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: currentIndex == 2
+                                  ? const Color.fromARGB(255, 100, 106, 255)
+                                  : Colors.grey,
+                              shape: BoxShape.circle),
+                          width: 15,
+                          height: 15,
+                        ),
+                        const Expanded(
+                          child: Column(),
+                        ),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: const Size(120, 35),
                           ),
+                          onPressed: () {
+                            setState(() {
+                              controller.nextPage();
+                            });
+                          },
+                          child: Text(
+                            currentIndex == 2 ? "Get Started" : "Continue",
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ),
