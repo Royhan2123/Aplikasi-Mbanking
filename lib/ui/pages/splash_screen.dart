@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      const Duration(seconds: 3),
+      const Duration(seconds: 5),
       () {
         Navigator.pushNamedAndRemoveUntil(
             context, "/onBoarding", (route) => false);
@@ -29,13 +30,10 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 150,
-              height: 150,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/splash.jpg"), fit: BoxFit.cover),
-              ),
+            Lottie.asset(
+              "assets/json/lottie.json",
+              width: 250,
+              height: 250,
             ),
           ],
         ),
