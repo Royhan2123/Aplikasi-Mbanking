@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      const Duration(seconds: 5),
+      const Duration(milliseconds: 5500),
       () {
         Navigator.pushNamedAndRemoveUntil(
             context, "/onBoarding", (route) => false);
@@ -32,8 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Lottie.asset(
               "assets/json/lottie.json",
-              width: 250,
-              height: 250,
+              width: 350,
+              height: 350,
             ),
           ],
         ),

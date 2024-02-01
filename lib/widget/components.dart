@@ -27,8 +27,7 @@ class _GetStartBtnState extends State<GetStartBtn> {
         ).then(
           (value) {
             isLoading = false;
-            Navigator.pushNamedAndRemoveUntil(
-                context, "/loginScreen", (route) => false);
+            Navigator.pushNamed(context, "/loginScreen");
           },
         );
       },
@@ -46,8 +45,8 @@ class _GetStartBtnState extends State<GetStartBtn> {
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
             animationDuration: const Duration(seconds: 5),
-            foregroundColor: Colors.blue,
-            backgroundColor: Colors.purple,
+            foregroundColor: primary,
+            backgroundColor: lightBlue,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
             ),
@@ -58,12 +57,12 @@ class _GetStartBtnState extends State<GetStartBtn> {
           },
           child: Center(
             child: isLoading
-                ?  Center(
+                ? const Center(
                     child: SizedBox(
                       width: 30,
                       height: 30,
                       child: CircularProgressIndicator(
-                        color: lightBlue,
+                        color: Color.fromARGB(255, 113, 205, 255),
                       ),
                     ),
                   )
@@ -97,8 +96,8 @@ class SkipBtn extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           animationDuration: const Duration(seconds: 5),
-          foregroundColor: Colors.blue,
-          backgroundColor: Colors.purple,
+          foregroundColor: primary,
+          backgroundColor: lightBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),

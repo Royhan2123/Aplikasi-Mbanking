@@ -23,3 +23,4 @@ Color lightBlue = const Color.fromARGB(
   199,
   255,
 );
+Color primary = const Color.fromARGB(255, 124, 2, 158);
