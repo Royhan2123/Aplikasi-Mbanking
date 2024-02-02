@@ -9,19 +9,34 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool obsucred = false;
+  bool isFocused = false;
+  final txtEmail = TextEditingController(text: "");
+  final txtPassword = TextEditingController(text: "");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(20),
+      body: Stack(
+        fit: StackFit.loose,
         children: [
-          headher(),
-          const SizedBox(
-            height: 50,
-          ),
-          bodys(),
+          Image.asset("assets/images/background.png"),
+          loginScreen(),
         ],
       ),
+    );
+  }
+
+  Widget loginScreen() {
+    return ListView(
+      padding: const EdgeInsets.all(20),
+      children: [
+        headher(),
+        const SizedBox(
+          height: 50,
+        ),
+        bodys(),
+      ],
     );
   }
 
@@ -29,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(top: 80),
+        padding: const EdgeInsets.only(top: 85),
         child: Text(
           "Login Your Account",
           style: blackStyle.copyWith(
@@ -54,30 +69,80 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        margin: const EdgeInsets.all(15),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              margin: const EdgeInsets.all(15),
+            Text(
+              "Email",
+              style: blackStyle.copyWith(
+                  fontSize: 15, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Focus(
+              onFocusChange: (value) {
+                setState(() {
+                  isFocused = value;
+                });
+              },
               child: TextFormField(
+                controller: txtEmail,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                ),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
                   contentPadding: const EdgeInsets.all(10),
+                  hintText: "name@example.com",
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: blues,
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  suffixIcon: Icon(
+                    Icons.email,
+                    color: isFocused ? blues : Colors.black,
+                  ),
                 ),
+                keyboardType: TextInputType.emailAddress,
               ),
             ),
-            Container(
-              margin: const EdgeInsets.all(15),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  contentPadding: const EdgeInsets.all(10),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              "Password",
+              style: blackStyle.copyWith(
+                  fontSize: 15, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            TextFormField(
+              controller: txtPassword,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
+                contentPadding: const EdgeInsets.all(10),
               ),
             ),
             const SizedBox(
