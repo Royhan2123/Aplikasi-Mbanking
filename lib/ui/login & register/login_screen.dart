@@ -9,8 +9,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool obsucred = false;
-  bool isFocused = false;
+  bool obsucred = true;
+  bool colorGmail = false;
+  bool colorPassword = false;
   final txtEmail = TextEditingController(text: "");
   final txtPassword = TextEditingController(text: "");
 
@@ -36,6 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
           height: 50,
         ),
         bodys(),
+        foots(),
       ],
     );
   }
@@ -44,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(top: 85),
+        padding: const EdgeInsets.only(top: 95),
         child: Text(
           "Login Your Account",
           style: blackStyle.copyWith(
@@ -70,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       child: Container(
         margin: const EdgeInsets.all(15),
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -85,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Focus(
               onFocusChange: (value) {
                 setState(() {
-                  isFocused = value;
+                  colorGmail = value;
                 });
               },
               child: TextFormField(
@@ -106,7 +108,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   enabledBorder: OutlineInputBorder(
                     borderSide: const BorderSide(
                       color: Colors.black,
-                      width: 1,
                     ),
                     borderRadius: BorderRadius.circular(10),
                   ),
@@ -119,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   suffixIcon: Icon(
                     Icons.email,
-                    color: isFocused ? blues : Colors.black,
+                    color: colorGmail ? blues : Colors.black,
                   ),
                 ),
                 keyboardType: TextInputType.emailAddress,
@@ -136,26 +137,158 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(
               height: 15,
             ),
-            TextFormField(
-              controller: txtPassword,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            Focus(
+              onFocusChange: (value) {
+                setState(() {
+                  colorPassword = value;
+                });
+              },
+              child: TextFormField(
+                controller: txtPassword,
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  contentPadding: const EdgeInsets.all(10),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                      color: Colors.black,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  hintText: "enter your password",
+                  hintStyle: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: blues,
+                      width: 1.5,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        obsucred = !obsucred;
+                      });
+                    },
+                    icon: Icon(
+                      obsucred ? Icons.visibility_off : Icons.visibility,
+                      color: colorPassword ? blues : Colors.black,
+                    ),
+                  ),
                 ),
-                contentPadding: const EdgeInsets.all(10),
+                obscureText: obsucred,
+                keyboardType: TextInputType.visiblePassword,
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             Center(
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  animationDuration: const Duration(seconds: 3),
+                  backgroundColor: blues,
+                  minimumSize: const Size(
+                    350,
+                    35,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  foregroundColor: primary,
+                ),
                 onPressed: () {},
-                child: Text("Login"),
+                child: const Text(
+                  "Login",
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Forgot your password?",
+                  style: blueStyle.copyWith(
+                      fontSize: 15, fontWeight: FontWeight.w400),
+                ),
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget foots() {
+    return Container(
+      margin: const EdgeInsets.all(15),
+      child: Column(
+        children: [
+          Center(
+            child: Text(
+              "--- or login with ---",
+              style: greyStyle.copyWith(fontSize: 14),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 45,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: const DecorationImage(
+                        image: AssetImage("assets/images/x.png"),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 45,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: const DecorationImage(
+                        image: AssetImage("assets/images/google.png"),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  width: 45,
+                  height: 45,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    image: const DecorationImage(
+                        image: AssetImage("assets/images/github.png"),
+                        fit: BoxFit.cover),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
