@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
       children: [
         headher(),
         const SizedBox(
-          height: 50,
+          height: 30,
         ),
         bodys(),
         foots(),
@@ -229,6 +229,9 @@ class _LoginScreenState extends State<LoginScreen> {
       margin: const EdgeInsets.all(15),
       child: Column(
         children: [
+          const SizedBox(
+            height: 20,
+          ),
           Center(
             child: Text(
               "--- or login with ---",
@@ -287,7 +290,35 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ],
-          )
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 50),
+            alignment: Alignment.bottomCenter,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  "don't have account?",
+                  style: TextStyle(color: Colors.grey, fontSize: 15),
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/registerScreen");
+                  },
+                  child: const Text(
+                    "Sign up",
+                    style: TextStyle(
+                      color: Colors.blue,
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
