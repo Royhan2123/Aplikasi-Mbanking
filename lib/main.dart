@@ -1,6 +1,8 @@
 
 import 'package:aplikasi_mbanking/ui/login%20&%20register/login_screen.dart';
 import 'package:aplikasi_mbanking/ui/login%20&%20register/register_screen.dart';
+import 'package:aplikasi_mbanking/ui/pages/forgot_password_screen.dart';
+import 'package:aplikasi_mbanking/ui/pages/signup_profile_photo_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/on_boarding_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +25,8 @@ class MainActivity extends StatelessWidget {
           "/onBoardingScreen": (context) => const OnBoardingScreen(),
           "/loginScreen": (context) => const LoginScreen(),
           "/registerScreen": (context) => const RegisterScreen(),
+          "/forgotPasswordScreen": (context) => const ForgotPasswordScreen(),
+          "/signUpProfileScreen": (context) => const SignUpProfilePhotoScreen(),
       },
       home: const SplashScreen(),
     );

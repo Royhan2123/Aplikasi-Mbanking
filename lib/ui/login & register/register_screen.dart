@@ -245,7 +245,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 onPressed: () {},
                 child: const Text(
-                  "Login",
+                  "Register",
                   style: TextStyle(color: Colors.white),
                 ),
               ),
