@@ -10,24 +10,24 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  TextEditingController firstController = TextEditingController();
-  TextEditingController secondController = TextEditingController();
-  TextEditingController thirdController = TextEditingController();
-  TextEditingController fourthController = TextEditingController();
+  FocusNode firstFocusNode = FocusNode();
   FocusNode secondFocusNode = FocusNode();
   FocusNode thirdFocusNode = FocusNode();
   FocusNode fourthFocusNode = FocusNode();
 
   @override
   void dispose() {
-    firstController.dispose();
-    secondController.dispose();
-    thirdController.dispose();
-    fourthController.dispose();
+    firstFocusNode.dispose();
     secondFocusNode.dispose();
     thirdFocusNode.dispose();
     fourthFocusNode.dispose();
     super.dispose();
+  }
+
+  void _fieldFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+    currentFocus.unfocus();
+    FocusScope.of(context).requestFocus(nextFocus);
   }
 
   @override
@@ -86,6 +86,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             fontSize: 17,
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -95,12 +98,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: TextFormField(
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                controller: firstController,
-                onChanged: (text) {
-                  if (text.length == 1) {
-                    FocusScope.of(context).requestFocus(secondFocusNode);
-                  }
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -112,6 +109,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(1),
                 ],
+                focusNode: firstFocusNode,
+                onFieldSubmitted: (term) {
+                  _fieldFocusChange(context, firstFocusNode, secondFocusNode);
+                },
               ),
             ),
             SizedBox(
@@ -120,12 +121,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: TextFormField(
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                controller: secondController,
-                onChanged: (text) {
-                  if (text.length == 1) {
-                    FocusScope.of(context).requestFocus(thirdFocusNode);
-                  }
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -137,6 +132,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(1),
                 ],
+                focusNode: secondFocusNode,
+                onFieldSubmitted: (term) {
+                  _fieldFocusChange(context, secondFocusNode, thirdFocusNode);
+                },
               ),
             ),
             SizedBox(
@@ -145,12 +144,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: TextFormField(
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                controller: thirdController,
-                onChanged: (text) {
-                  if (text.length == 1) {
-                    FocusScope.of(context).requestFocus(fourthFocusNode);
-                  }
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -162,6 +155,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(1),
                 ],
+                focusNode: thirdFocusNode,
+                onFieldSubmitted: (term) {
+                  _fieldFocusChange(context, thirdFocusNode, fourthFocusNode);
+                },
               ),
             ),
             SizedBox(
@@ -170,10 +167,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: TextFormField(
                 textAlign: TextAlign.center,
                 maxLines: 1,
-                controller: fourthController,
-                onChanged: (text) {
-                  // Handle submission if needed
-                },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -185,10 +178,41 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(1),
                 ],
+                focusNode: fourthFocusNode,
+                
               ),
             ),
           ],
-        )
+        ),
+        const SizedBox(
+          height: 50,
+        ),
+        Center(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              animationDuration: const Duration(seconds: 3),
+              backgroundColor: blues,
+              minimumSize: const Size(
+                200,
+                35,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
+              ),
+              foregroundColor: primary,
+            ),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                "/forgotPasswordSucces",
+              );
+            },
+            child: const Text(
+              "Verify",
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ),
       ],
     );
   }
