@@ -10,15 +10,24 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-   TextEditingController firstController = TextEditingController();
+  TextEditingController firstController = TextEditingController();
   TextEditingController secondController = TextEditingController();
   TextEditingController thirdController = TextEditingController();
   TextEditingController fourthController = TextEditingController();
+  FocusNode secondFocusNode = FocusNode();
+  FocusNode thirdFocusNode = FocusNode();
+  FocusNode fourthFocusNode = FocusNode();
 
-  void _fieldFocusChange(
-      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
-    currentFocus.unfocus();
-    FocusScope.of(context).requestFocus(nextFocus);
+  @override
+  void dispose() {
+    firstController.dispose();
+    secondController.dispose();
+    thirdController.dispose();
+    fourthController.dispose();
+    secondFocusNode.dispose();
+    thirdFocusNode.dispose();
+    fourthFocusNode.dispose();
+    super.dispose();
   }
 
   @override
@@ -80,104 +89,104 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             SizedBox(
-            height: 55,
-            width: 55,
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              controller: firstController,
-              onChanged: (text) {
-                if (text.length == 1) {
-                  FocusScope.of(context).requestFocus(secondFocusNode);
-                }
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
+            SizedBox(
+              height: 55,
+              width: 55,
+              child: TextFormField(
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                controller: firstController,
+                onChanged: (text) {
+                  if (text.length == 1) {
+                    FocusScope.of(context).requestFocus(secondFocusNode);
+                  }
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  fillColor: Colors.grey[200],
+                  filled: true,
                 ),
-                fillColor: Colors.grey[200],
-                filled: true,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(1),
+                ],
               ),
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-              ],
             ),
-          ),
-          SizedBox(
-            height: 55,
-            width: 55,
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              controller: secondController,
-              onChanged: (text) {
-                if (text.length == 1) {
-                  FocusScope.of(context).requestFocus(thirdFocusNode);
-                }
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
+            SizedBox(
+              height: 55,
+              width: 55,
+              child: TextFormField(
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                controller: secondController,
+                onChanged: (text) {
+                  if (text.length == 1) {
+                    FocusScope.of(context).requestFocus(thirdFocusNode);
+                  }
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  fillColor: Colors.grey[200],
+                  filled: true,
                 ),
-                fillColor: Colors.grey[200],
-                filled: true,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(1),
+                ],
               ),
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-              ],
             ),
-          ),
-          SizedBox(
-            height: 55,
-            width: 55,
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              controller: thirdController,
-              onChanged: (text) {
-                if (text.length == 1) {
-                  FocusScope.of(context).requestFocus(fourthFocusNode);
-                }
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
+            SizedBox(
+              height: 55,
+              width: 55,
+              child: TextFormField(
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                controller: thirdController,
+                onChanged: (text) {
+                  if (text.length == 1) {
+                    FocusScope.of(context).requestFocus(fourthFocusNode);
+                  }
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  fillColor: Colors.grey[200],
+                  filled: true,
                 ),
-                fillColor: Colors.grey[200],
-                filled: true,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(1),
+                ],
               ),
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-              ],
             ),
-          ),
-          SizedBox(
-            height: 55,
-            width: 55,
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              controller: fourthController,
-              onChanged: (text) {
-                // Handle submission if needed
-              },
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide.none,
+            SizedBox(
+              height: 55,
+              width: 55,
+              child: TextFormField(
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                controller: fourthController,
+                onChanged: (text) {
+                  // Handle submission if needed
+                },
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  fillColor: Colors.grey[200],
+                  filled: true,
                 ),
-                fillColor: Colors.grey[200],
-                filled: true,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(1),
+                ],
               ),
-              inputFormatters: [
-                LengthLimitingTextInputFormatter(1),
-              ],
             ),
-          ),
           ],
         )
       ],
