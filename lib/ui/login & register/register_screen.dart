@@ -244,7 +244,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   foregroundColor: primary,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/signupProfilePhotoScreen");
+                  Navigator.pushNamed(context, "/signUpProfilePhotoScreen");
                 },
                 child: const Text(
                   "Create Account",

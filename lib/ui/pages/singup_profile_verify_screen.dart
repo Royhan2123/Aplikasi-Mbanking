@@ -33,7 +33,7 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
   }
 
   bool validate() {
-    if (txtPin.text.length < 6) {
+    if (selectedImage == null) {
       return true;
     }
     return false;
@@ -145,7 +145,7 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(
-                                "Tolong Masukkan Pin Anda",
+                                "Tolong Masukkan Gambar Anda",
                               ),
                               backgroundColor: Colors.red,
                             ),
