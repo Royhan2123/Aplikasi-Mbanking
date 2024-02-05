@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SignUpProfilePhotoScreen extends StatefulWidget {
   const SignUpProfilePhotoScreen({super.key});
@@ -14,6 +17,20 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
   final txtPin = TextEditingController(
     text: "",
   );
+  XFile? selectedImage;
+
+  selecImage() async {
+    final imagePicker = ImagePicker();
+    final XFile? image =
+        await imagePicker.pickImage(source: ImageSource.camera);
+
+    if (image != null) {
+      setState(() {
+        selectedImage = image;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +77,11 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                 children: [
                   Center(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        setState(() {
+                          selectedImage!;
+                        });
+                      },
                       child: Container(
                         margin: const EdgeInsets.only(top: 45),
                         width: 100,
@@ -68,14 +89,24 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           color: lightGrey,
+                          image: selectedImage == null
+                              ? null
+                              : DecorationImage(
+                                  image: FileImage(
+                                    selectedImage!.path as File,
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
                         ),
-                        child: Center(
-                          child: Icon(
-                            Icons.image,
-                            color: grey,
-                            size: 50,
-                          ),
-                        ),
+                        child: selectedImage != null
+                            ? null
+                            : Center(
+                                child: Icon(
+                                  Icons.image,
+                                  color: grey,
+                                  size: 50,
+                                ),
+                              ),
                       ),
                     ),
                   ),
