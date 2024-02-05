@@ -243,9 +243,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   foregroundColor: primary,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, "/signupProfilePhotoScreen");
+                },
                 child: const Text(
-                  "Register",
+                  "Create Account",
                   style: TextStyle(color: Colors.white),
                 ),
               ),

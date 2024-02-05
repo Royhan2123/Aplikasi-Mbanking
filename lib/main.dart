@@ -29,6 +29,7 @@ class MainActivity extends StatelessWidget {
           "/forgotPasswordScreen": (context) => const ForgotPasswordScreen(),
           "/forgotPasswordSucces": (context) => const ForgotPasswordSucces(),
           "/signUpProfileScreen": (context) => const SignUpProfilePhotoScreen(),
+          "/signupProfilePhotoScreen": (context) => const SignUpProfilePhotoScreen(),
       },
       home: const SplashScreen(),
     );
