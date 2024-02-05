@@ -1,18 +1,17 @@
 import 'dart:io';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
-class SignUpProfilePhotoScreen extends StatefulWidget {
-  const SignUpProfilePhotoScreen({super.key});
+class SignUpProfileVerifyScreen extends StatefulWidget {
+  const SignUpProfileVerifyScreen({super.key});
 
   @override
-  State<SignUpProfilePhotoScreen> createState() =>
-      _SignUpProfilePhotoScreenState();
+  State<SignUpProfileVerifyScreen> createState() =>
+      _SignUpProfileVerifyScreenState();
 }
 
-class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
+class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
   final txtPin = TextEditingController(
     text: "",
   );
@@ -46,7 +45,7 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Input Your Photo',
+          'Verify Your Account',
           style: blackStyle.copyWith(
             fontSize: 17,
             fontWeight: FontWeight.w500,
@@ -84,6 +83,11 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    "Input your identification card",
+                    style: blackStyle.copyWith(
+                        fontSize: 14, fontWeight: FontWeight.bold),
+                  ),
                   Center(
                     child: InkWell(
                       onTap: () async {
@@ -123,64 +127,6 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                     height: 20,
                   ),
                   Center(
-                    child: Text(
-                      "Royhan",
-                      style: blackStyle.copyWith(
-                        fontSize: 16,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Text(
-                    "Set your pin",
-                    style: blackStyle.copyWith(
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: txtPin,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(6),
-                    ],
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 15,
-                    ),
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      contentPadding: const EdgeInsets.all(10),
-                      hintText: "enter your pin 6 digit",
-                      hintStyle: const TextStyle(
-                        color: Colors.grey,
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: blues,
-                          width: 1.5,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: Colors.black,
-                        ),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    obscureText: true,
-                    keyboardType: TextInputType.number,
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Center(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         animationDuration: const Duration(seconds: 3),
@@ -206,12 +152,25 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                           );
                         } else {
                           Navigator.pushNamed(
-                              context, "/signUpProfileVerifyScreen");
+                              context, "/signupProfilePhotoScreen");
                         }
                       },
                       child: const Text(
                         "Continue",
                         style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Center(
+                    child: InkWell(
+                      onTap: () {},
+                      child: Text(
+                        "Skip",
+                        style: greyStyle.copyWith(
+                            fontSize: 19, fontWeight: FontWeight.w600),
                       ),
                     ),
                   ),
