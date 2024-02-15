@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
+import 'package:aplikasi_mbanking/ui/pages/halaman_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -166,7 +167,13 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                   ),
                   Center(
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => HalamanBottom(),
+                            ),);
+                      },
                       child: Text(
                         "Skip",
                         style: greyStyle.copyWith(

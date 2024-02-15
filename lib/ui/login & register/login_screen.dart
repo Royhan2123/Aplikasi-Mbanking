@@ -200,7 +200,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   foregroundColor: primary,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, "/halamanBottom", (route) => false);
+                },
                 child: const Text(
                   "Login",
                   style: TextStyle(color: Colors.white),
