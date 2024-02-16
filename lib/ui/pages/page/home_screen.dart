@@ -82,25 +82,25 @@ class _HomeScreenState extends State<HomeScreen> {
         top: 50,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: const EdgeInsets.all(
-              20,
-            ),
+            padding: const EdgeInsets.all(20),
             width: double.maxFinite,
-            height: 200,
+            height: 184,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                20,
-              ),
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: primary,
-                  blurRadius: 12,
-                )
+                  color: blues,
+                  blurRadius: 15,
+                ),
               ],
-              color: lightPrimary,
+              image: const DecorationImage(
+                image: AssetImage(
+                  "assets/images/card_banking.png",
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       letterSpacing: 6),
                 ),
                 const SizedBox(
-                  height: 35,
+                  height: 20,
                 ),
                 Text(
                   "Balance",
@@ -131,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 5,
                 ),
                 Text(
-                  formatCurrency(450000),
+                  formatCurrency(45000000),
                   style: whiteStyle.copyWith(fontSize: 20),
                 ),
               ],
