@@ -25,19 +25,19 @@ class _HalamanBottomState extends State<HalamanBottom> {
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.home),
         title: ("Home"),
-        activeColorPrimary: blues,
+        activeColorPrimary: lightPrimary,
         inactiveColorPrimary: grey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.search),
         title: ("search"),
-        activeColorPrimary: blues,
+        activeColorPrimary: lightPrimary,
         inactiveColorPrimary: grey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.account_circle),
         title: ("account"),
-        activeColorPrimary: blues,
+        activeColorPrimary: lightPrimary,
         inactiveColorPrimary: grey,
       ),
     ];
