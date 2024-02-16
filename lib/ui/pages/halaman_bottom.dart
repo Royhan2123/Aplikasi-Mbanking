@@ -1,5 +1,6 @@
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/account_screen.dart';
+import 'package:aplikasi_mbanking/ui/pages/page/history_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/home_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/search_screen.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class _HalamanBottomState extends State<HalamanBottom> {
   final listBottom = const [
     HomeScreen(),
     SearchScreen(),
+    HistoryScreen(),
     AccountScreen(),
   ];
 
@@ -30,13 +32,19 @@ class _HalamanBottomState extends State<HalamanBottom> {
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.search),
-        title: ("search"),
+        title: ("Search"),
+        activeColorPrimary: lightPrimary,
+        inactiveColorPrimary: grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.my_library_add_rounded),
+        title: ("History"),
         activeColorPrimary: lightPrimary,
         inactiveColorPrimary: grey,
       ),
       PersistentBottomNavBarItem(
         icon: const Icon(Icons.account_circle),
-        title: ("account"),
+        title: ("Account"),
         activeColorPrimary: lightPrimary,
         inactiveColorPrimary: grey,
       ),

@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 Text(
-                  "**** **** **** 1280",
+                  "**** **** **** 2004",
                   style: whiteStyle.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
