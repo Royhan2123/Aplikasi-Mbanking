@@ -60,13 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           Container(
-            width: 80,
-            height: 80,
+            width: 85,
+            height: 85,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                20,
-              ),
-              color: const Color(0xffDAB66F),
+              shape: BoxShape.circle,
+              color: grey,
               image: const DecorationImage(
                 image: AssetImage("assets/images/avatar.png"),
                 fit: BoxFit.cover,
@@ -87,11 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            padding: const EdgeInsets.all(
+              20,
+            ),
             width: double.maxFinite,
-            height: 150,
+            height: 200,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
-                15,
+                20,
               ),
               boxShadow: [
                 BoxShadow(
@@ -130,7 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 5,
                 ),
                 Text(
-                  formatCurrency(190.000),
+                  formatCurrency(450000),
                   style: whiteStyle.copyWith(fontSize: 20),
                 ),
               ],

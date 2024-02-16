@@ -27,5 +27,5 @@ Color primary = const Color.fromARGB(255, 124, 2, 158);
 Color blues = const Color.fromARGB(248, 63, 151, 252);
 Color lightGrey = const Color(0xffD9D9D9);
 Color grey = const Color(0xff999999);
-Color lightPrimary = const Color.fromARGB(255, 118, 87, 255);
+Color lightPrimary = const Color(0xFF7657FF);
 Color redColor = const Color.fromARGB(255, 196, 4, 4);

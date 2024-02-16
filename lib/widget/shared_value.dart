@@ -1,7 +1,7 @@
 import 'package:another_flushbar/flushbar.dart';
+import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 
 void showCustomSnackbar(BuildContext context, String message) {
   Flushbar(
