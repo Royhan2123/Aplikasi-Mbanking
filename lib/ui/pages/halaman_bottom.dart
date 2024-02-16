@@ -3,7 +3,7 @@ import 'package:aplikasi_mbanking/ui/pages/page/account_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/home_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/search_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 class HalamanBottom extends StatefulWidget {
   const HalamanBottom({super.key});
@@ -13,58 +13,53 @@ class HalamanBottom extends StatefulWidget {
 }
 
 class _HalamanBottomState extends State<HalamanBottom> {
+  final controller = PersistentTabController(initialIndex: 0);
   final listBottom = const [
     HomeScreen(),
     SearchScreen(),
     AccountScreen(),
   ];
 
+  List<PersistentBottomNavBarItem> bottomBar() {
+    return [
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.home),
+        title: ("Home"),
+        activeColorPrimary: blues,
+        inactiveColorPrimary: grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.search),
+        title: ("search"),
+        activeColorPrimary: blues,
+        inactiveColorPrimary: grey,
+      ),
+      PersistentBottomNavBarItem(
+        icon: const Icon(Icons.account_circle),
+        title: ("account"),
+        activeColorPrimary: blues,
+        inactiveColorPrimary: grey,
+      ),
+    ];
+  }
+
   int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentIndex,
-        children: listBottom,
-      ),
-      bottomNavigationBar: Container(
-        color: blues,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 10,
-          ),
-          child: GNav(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            selectedIndex: currentIndex,
-            onTabChange: (index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-            tabs: const [
-              GButton(
-                icon: Icons.home_filled,
-                text: "Home",
-              ),
-              GButton(
-                icon: Icons.search,
-                text: "Search",
-              ),
-              GButton(
-                icon: Icons.account_circle_rounded,
-                text: "Account",
-              ),
-            ],
-            gap: 8,
-            backgroundColor: blues,
-            color: lightBlue,
-            activeColor: Colors.white,
-            tabBackgroundColor: const Color.fromARGB(255, 36, 106, 225),
-            padding: const EdgeInsets.all(20),
-          ),
+      body: listBottom[currentIndex],
+      bottomNavigationBar: PersistentTabView(
+        context,
+        screens: listBottom,
+        items: bottomBar(),
+        navBarStyle: NavBarStyle.style3,
+        backgroundColor: Colors.white,
+        itemAnimationProperties: const ItemAnimationProperties(
+          duration: Duration(milliseconds: 400),
+          curve: Curves.easeInOutCirc,
         ),
+        controller: controller,
       ),
     );
   }
