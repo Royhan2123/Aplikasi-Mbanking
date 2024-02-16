@@ -1,4 +1,5 @@
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
+import 'package:aplikasi_mbanking/widget/shared_value.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         children: [
           headher(),
+          bodys(),
         ],
       ),
     );
@@ -42,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Text(
-                "Mr. Alexander Francis",
+                "Royhan",
                 style: blackStyle.copyWith(
                   fontSize: 17,
                   fontWeight: FontWeight.w600,
@@ -69,6 +71,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 image: AssetImage("assets/images/avatar.png"),
                 fit: BoxFit.cover,
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget bodys() {
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 50,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            width: double.maxFinite,
+            height: 150,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                15,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: primary,
+                  blurRadius: 12,
+                )
+              ],
+              color: lightPrimary,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Royhan",
+                  style: whiteStyle.copyWith(
+                      fontWeight: FontWeight.w500, fontSize: 15),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "**** **** **** 1280",
+                  style: whiteStyle.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 6),
+                ),
+                const SizedBox(
+                  height: 35,
+                ),
+                Text(
+                  "Balance",
+                  style: whiteStyle.copyWith(fontSize: 14),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  formatCurrency(190.000),
+                  style: whiteStyle.copyWith(fontSize: 20),
+                ),
+              ],
             ),
           ),
         ],

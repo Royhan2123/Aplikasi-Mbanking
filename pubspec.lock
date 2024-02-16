@@ -9,6 +9,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.3"
+  another_flushbar:
+    dependency: "direct main"
+    description:
+      name: another_flushbar
+      sha256: "19bf9520230ec40b300aaf9dd2a8fefcb277b25ecd1c4838f530566965befc2a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.12.30"
   archive:
     dependency: transitive
     description:
@@ -153,6 +161,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.9.3+1"
+  flashy_flushbar:
+    dependency: "direct main"
+    description:
+      name: flashy_flushbar
+      sha256: e9d5892d9b97d0b9bc898a2e793c12385287e449331c6d298b9edddec36dbb90
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -280,6 +296,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.2.1+1"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.19.0"
   js:
     dependency: transitive
     description:
