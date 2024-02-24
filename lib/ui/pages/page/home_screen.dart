@@ -190,7 +190,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 35,
           ),
           Container(
             width: double.infinity,
@@ -225,9 +225,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                         ),
                         const Icon(
-                          Icons.arrow_forward_sharp,
+                          Icons.arrow_forward_ios_outlined,
                           color: Colors.black,
-                          size: 25,
+                          size: 20,
                         ),
                       ],
                     ),
@@ -350,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           Text(
-                            "24 Feb 2024, 13:21",
+                            "12 Feb 2024, 11:25",
                             style: greyStyle.copyWith(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -447,18 +447,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                const Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Divider(
-                    height: 2,
-                    thickness: 2,
+                const SizedBox(
+                  height: 20,
+                ),
+                const Divider(
+                  height: 2,
+                  thickness: 2,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                InkWell(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Transaksi Lainnya",
+                        style: GoogleFonts.poppins(
+                            color: Colors.black, fontSize: 15),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Icon(
+                        Icons.arrow_forward_ios_outlined,
+                        color: Colors.black,
+                        size: 20,
+                      ),
+                    ],
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
               ],
             ),
           ),
           const SizedBox(
-            height: 100,
+            height: 50,
           ),
         ],
       ),
