@@ -142,195 +142,72 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 50,
           ),
           Container(
-            height: 220,
-            padding: const EdgeInsets.all(
-              20,
+            padding: const EdgeInsets.only(
+              top: 35,
+              left: 20,
+              right: 20,
+              bottom: 20,
             ),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                15,
-              ),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
               boxShadow: const [
                 BoxShadow(
                   color: Colors.grey,
                   blurRadius: 12,
                 ),
               ],
-              color: Colors.white,
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: GridView.count(
+              crossAxisCount: 3,
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/transfer.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "Top Up",
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/topUpEwallet.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "Top Up E-Wallet",
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 13,
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/history.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "History",
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/deposit.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "Deposit",
-                          style: GoogleFonts.poppins(
-                            color: Colors.black,
-                            fontSize: 13,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/inviteFriends.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "Send Friend",
-                          style: GoogleFonts.poppins(
-                              color: Colors.black, fontSize: 13),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          decoration: const BoxDecoration(
-                            image: DecorationImage(
-                              image: AssetImage(
-                                "assets/images/borrow.png",
-                              ),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "Borrow ",
-                          style: GoogleFonts.poppins(
-                              color: Colors.black, fontSize: 13),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+                gridItem("assets/images/transfer.png", "Transfer"),
+                gridItem("assets/images/topUpEwallet.png", "Top Up Wallet"),
+                gridItem("assets/images/history.png", "History"),
+                gridItem("assets/images/deposit.png", "Deposit"),
+                gridItem("assets/images/inviteFriends.png", "Send Friend"),
+                gridItem("assets/images/borrow.png", "Borrow"),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget gridItem(String imagePath, String title) {
+    return Column(
+      children: [
+        InkWell(
+          onTap: () {},
+          child: Container(
+            width: 40,
+            height: 40,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  imagePath,
+                ),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Text(
+          title,
+          style: GoogleFonts.poppins(
+            color: Colors.black,
+            fontSize: 13,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
     );
   }
 }
