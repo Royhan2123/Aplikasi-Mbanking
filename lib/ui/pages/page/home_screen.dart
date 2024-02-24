@@ -409,7 +409,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "SeaBak Ilham Bxx...",
+                            "SeaBank Ilham Bxxx..",
                             style: blackStyle.copyWith(
                                 fontSize: 14, fontWeight: FontWeight.w600),
                             overflow: TextOverflow.ellipsis,
