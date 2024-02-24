@@ -141,6 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 50,
           ),
           Container(
+            height: 120,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(
                 15,
@@ -153,8 +154,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   width: 50,
                   height: 50,
                   decoration: const BoxDecoration(
+                    color: Colors.red,
                     image: DecorationImage(
-                      image: AssetImage("assets/trasnfer.png"),
+                      image: AssetImage("assets/images/transfer.png"),
                       fit: BoxFit.cover,
                     ),
                   ),
