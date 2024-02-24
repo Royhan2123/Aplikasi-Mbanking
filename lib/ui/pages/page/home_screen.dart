@@ -64,6 +64,12 @@ class _HomeScreenState extends State<HomeScreen> {
             width: 85,
             height: 85,
             decoration: BoxDecoration(
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 10,
+                )
+              ],
               shape: BoxShape.circle,
               color: grey,
               image: const DecorationImage(
@@ -83,6 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
         top: 50,
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: const EdgeInsets.all(20),
@@ -141,12 +148,21 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(
             height: 50,
           ),
+          Text(
+            "Top Up & Transfer",
+            style: blackStyle.copyWith(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
           Container(
             padding: const EdgeInsets.only(
               top: 35,
-              left: 20,
-              right: 20,
-              bottom: 20,
+              left: 15,
+              right: 15,
             ),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -168,10 +184,281 @@ class _HomeScreenState extends State<HomeScreen> {
                 gridItem("assets/images/topUpEwallet.png", "Top Up Wallet"),
                 gridItem("assets/images/history.png", "History"),
                 gridItem("assets/images/deposit.png", "Deposit"),
-                gridItem("assets/images/inviteFriends.png", "Send Friend"),
+                gridItem("assets/images/inviteFriends.png", "Invite Friend"),
                 gridItem("assets/images/borrow.png", "Borrow"),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 50,
+          ),
+          Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                15,
+              ),
+              color: Colors.white,
+              boxShadow: const [
+                BoxShadow(
+                  color: Colors.black,
+                  blurRadius: 12,
+                ),
+              ],
+            ),
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(
+                    15,
+                  ),
+                  child: InkWell(
+                    onTap: () {},
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Riwayat Transaksi",
+                          style: GoogleFonts.poppins(
+                            color: Colors.black,
+                            fontSize: 15,
+                          ),
+                        ),
+                        const Icon(
+                          Icons.arrow_forward_sharp,
+                          color: Colors.black,
+                          size: 25,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Divider(
+                  color: Colors.grey,
+                  height: 1,
+                  thickness: 2,
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/fathin.jpg"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Dnid Fathin Fayyxx...",
+                            style: blackStyle.copyWith(
+                                fontSize: 14, fontWeight: FontWeight.w600),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            "Transfer",
+                            style: blackStyle.copyWith(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "24 Feb 2024, 13:21",
+                            style: greyStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "-Rp 450.000",
+                              style: blackStyle.copyWith(
+                                  fontSize: 13, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Divider(
+                    height: 2,
+                    thickness: 2,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/yogie.jpg"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Gopay Yogie Arxxx...",
+                            style: blackStyle.copyWith(
+                                fontSize: 14, fontWeight: FontWeight.w600),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            "Transfer",
+                            style: blackStyle.copyWith(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "24 Feb 2024, 13:21",
+                            style: greyStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "-Rp 200.000",
+                              style: blackStyle.copyWith(
+                                  fontSize: 13, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Divider(
+                    height: 2,
+                    thickness: 2,
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 50,
+                        height: 50,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            image: AssetImage("assets/images/ilham.jpg"),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "SeaBak Ilham Bxx...",
+                            style: blackStyle.copyWith(
+                                fontSize: 14, fontWeight: FontWeight.w600),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          Text(
+                            "Transfer",
+                            style: blackStyle.copyWith(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Text(
+                            "21 Des 2023, 18:50",
+                            style: greyStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      Expanded(
+                        child: Column(
+                          children: [
+                            Text(
+                              "-Rp 1.500.000",
+                              style: blackStyle.copyWith(
+                                  fontSize: 13, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(20),
+                  child: Divider(
+                    height: 2,
+                    thickness: 2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 100,
           ),
         ],
       ),
