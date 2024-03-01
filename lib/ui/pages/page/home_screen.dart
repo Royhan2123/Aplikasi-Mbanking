@@ -63,16 +63,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             width: 85,
             height: 85,
-            decoration: BoxDecoration(
-              boxShadow: const [
+            decoration: const BoxDecoration(
+              boxShadow: [
                 BoxShadow(
-                  color: Colors.black,
+                  color: Colors.grey,
                   blurRadius: 10,
                 )
               ],
               shape: BoxShape.circle,
-              color: grey,
-              image: const DecorationImage(
+              color: Colors.white,
+              image: DecorationImage(
                 image: AssetImage("assets/images/avatar.png"),
                 fit: BoxFit.cover,
               ),
