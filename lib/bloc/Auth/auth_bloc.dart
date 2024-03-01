@@ -1,3 +1,4 @@
+import 'package:aplikasi_mbanking/models/users_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -6,8 +7,8 @@ part 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
-    on<AuthEvent>((event, emit) {
-      // TODO: implement event handler
+    on<AuthEvent>((event, emit) async {
+      
     });
   }
 }

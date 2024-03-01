@@ -6,3 +6,12 @@ sealed class AuthEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class CheckEmail extends AuthEvent {
+  final String email;
+
+  const CheckEmail(this.email);
+
+  @override
+  List<Object> get props => [email];
+}
