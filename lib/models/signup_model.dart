@@ -1,22 +1,19 @@
 // ignore_for_file: file_names
-
 class SignUpModels {
-  final String? id;
   final String? name;
   final String? email;
   final String? password;
-  final int? pin;
+  final String? pin;
   final String? profilePicture;
   final String? ktp;
 
   const SignUpModels({
-    this.id,
-    this.name,
+    required this.name,
     this.pin,
-    this.email,
+    required this.email,
     this.profilePicture,
     this.ktp,
-    this.password,
+    required this.password,
   });
 
   Map<String, dynamic> toJson() => {
@@ -27,4 +24,18 @@ class SignUpModels {
         "ktp": ktp,
         "password": password,
       };
+
+  SignUpModels copyWith({
+    String? pin,
+    String? ktp,
+    String? profilePicture,
+  }) =>
+      SignUpModels(
+        email: email,
+        name: name,
+        password: password,
+        pin: pin ?? this.pin,
+        ktp: ktp ?? this.ktp,
+        profilePicture: profilePicture ?? this.profilePicture,
+      );
 }
