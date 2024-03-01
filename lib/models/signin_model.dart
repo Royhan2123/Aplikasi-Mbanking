@@ -1,8 +1,8 @@
-class SignInModel {
+class SignInModels {
   final String? email;
   final String? password;
 
-  const SignInModel({
+  const SignInModels({
     required this.email,
     required this.password,
   });
