@@ -28,7 +28,7 @@ class AuthServices {
     }
   }
 
-  Future<UsersModels> signUp(SignUpModels data) async {
+  Future<UsersModels> signUpServices(SignUpModels data) async {
     try {
       final response = await dio.post("$baseUrl/register", data: {
         data.toJson(),
