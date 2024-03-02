@@ -1,5 +1,6 @@
 import 'package:aplikasi_mbanking/models/signUp_model.dart';
 import 'package:aplikasi_mbanking/models/signin_model.dart';
+import 'package:aplikasi_mbanking/models/user_form_model.dart';
 import 'package:aplikasi_mbanking/models/users_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -66,13 +67,51 @@ class AuthServices {
     }
   }
 
-  // this for to send store crediantial to local 
+  Future<void> updateUser(UserFormModel data) async {
+    try {
+      final response = await dio.put(
+        "$baseUrl/users",
+        data: {
+          data.toJson(),
+        },
+      );
+
+      if (response.statusCode != 200) {
+        throw response.data["message"];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // this for to send store crediantial to local
   Future<void> storeCredentialToLocal(UsersModels user) async {
     try {
       const storage = FlutterSecureStorage();
       await storage.write(key: "token", value: user.token);
       await storage.write(key: "email", value: user.email);
       await storage.write(key: "password", value: user.password);
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  // for take credential from local to user
+  Future<SignInModels> getCredentialFromLocal() async {
+    try {
+      const storage = FlutterSecureStorage();
+
+      Map<String, String> value = await storage.readAll();
+
+      if (value["email"] == null || value["password"] == null) {
+        throw "authenticated";
+      } else {
+        final SignInModels data = SignInModels(
+          email: value["email"],
+          password: value["password"],
+        );
+        return data;
+      }
     } catch (e) {
       rethrow;
     }
