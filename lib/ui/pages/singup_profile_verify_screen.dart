@@ -171,7 +171,7 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HalamanBottom(),
+                              builder: (context) => const HalamanBottom(),
                             ),);
                       },
                       child: Text(
