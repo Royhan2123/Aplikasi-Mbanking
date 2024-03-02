@@ -2,6 +2,7 @@ import 'package:aplikasi_mbanking/models/signUp_model.dart';
 import 'package:aplikasi_mbanking/models/signin_model.dart';
 import 'package:aplikasi_mbanking/models/users_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthServices {
   String baseUrl = "https://bwabank.my.id/api/";
@@ -60,6 +61,17 @@ class AuthServices {
       } else {
         throw response.data["message"];
       }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> storeCredentialToLocal(UsersModels user) async {
+    try {
+      const storage = FlutterSecureStorage();
+      await storage.write(key: "token", value: user.token);
+      await storage.write(key: "email", value: user.email);
+      await storage.write(key: "password", value: user.password);
     } catch (e) {
       rethrow;
     }
