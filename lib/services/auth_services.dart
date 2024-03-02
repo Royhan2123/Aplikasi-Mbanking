@@ -39,6 +39,7 @@ class AuthServices {
       if (response.statusCode == 200) {
         UsersModels user = UsersModels.fromJson(response.data);
         user = user.copyWith(password: data.password);
+        await storeCredentialToLocal(user);
         return user;
       } else {
         throw response.data["message"];
@@ -58,6 +59,7 @@ class AuthServices {
       if (response.statusCode == 200) {
         UsersModels user = UsersModels.fromJson(response.data);
         user = user.copyWith(password: data.password);
+        await storeCredentialToLocal(user);
         return user;
       } else {
         throw response.data["message"];
@@ -69,11 +71,19 @@ class AuthServices {
 
   Future<void> updateUser(UserFormModel data) async {
     try {
+
+      final token = await getToken();
       final response = await dio.put(
         "$baseUrl/users",
         data: {
           data.toJson(),
         },
+        options: Options(
+          headers: {
+            "Authorization" : "Bearer $token",
+          }
+
+        ),
       );
 
       if (response.statusCode != 200) {
