@@ -1,4 +1,5 @@
 import 'package:aplikasi_mbanking/models/signUp_model.dart';
+import 'package:aplikasi_mbanking/models/signin_model.dart';
 import 'package:aplikasi_mbanking/models/users_model.dart';
 import 'package:dio/dio.dart';
 
@@ -33,6 +34,25 @@ class AuthServices {
       final response = await dio.post("$baseUrl/register", data: {
         data.toJson(),
       });
+      if (response.statusCode == 200) {
+        UsersModels user = UsersModels.fromJson(response.data);
+        user = user.copyWith(password: data.password);
+        return user;
+      } else {
+        throw response.data["message"];
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<UsersModels> signInServices(SignInModels data) async {
+    try {
+      final response = await dio.post(
+        "$baseUrl/login",
+        data: {data.toJson()},
+      );
+
       if (response.statusCode == 200) {
         UsersModels user = UsersModels.fromJson(response.data);
         user = user.copyWith(password: data.password);
