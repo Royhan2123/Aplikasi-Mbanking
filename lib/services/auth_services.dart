@@ -71,7 +71,6 @@ class AuthServices {
 
   Future<void> updateUser(UserFormModel data) async {
     try {
-
       final token = await getToken();
       final response = await dio.put(
         "$baseUrl/users",
@@ -80,10 +79,8 @@ class AuthServices {
         },
         options: Options(
           headers: {
-            "Authorization" : "Bearer $token",
-          }
-
-        ),
+          "Authorization": "Bearer $token",
+        }),
       );
 
       if (response.statusCode != 200) {
