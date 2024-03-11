@@ -114,4 +114,10 @@ class AuthServices {
     }
     return token;
   }
+
+  Future<void> clearAllStorage() async {
+    const storage = FlutterSecureStorage();
+
+    storage.deleteAll();
+  }
 }
