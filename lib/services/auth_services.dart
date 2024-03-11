@@ -1,5 +1,6 @@
 import 'package:aplikasi_mbanking/models/signin_model.dart';
 import 'package:aplikasi_mbanking/models/signup_model.dart';
+import 'package:aplikasi_mbanking/models/user_form_model.dart';
 import 'package:aplikasi_mbanking/models/users_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -39,6 +40,7 @@ class AuthServices {
       if (response.statusCode == 200) {
         UsersModels user = UsersModels.fromJson(response.data);
         user = user.copyWith(password: data.password);
+        await storeCredentialToLocal(user);
         return user;
       } else {
         throw response.data["message"];
@@ -59,6 +61,7 @@ class AuthServices {
       if (response.statusCode == 200) {
         UsersModels user = UsersModels.fromJson(response.data);
         user.copyWith(password: data.password);
+        await storeCredentialToLocal(user);
         return user;
       } else {
         throw response.data["message"];
@@ -96,6 +99,25 @@ class AuthServices {
           password: value["password"],
         );
         return data;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<void> updateUser(UserFormModel data) async {
+    final token = await getToken();
+    try {
+      final response = await dio.post(
+        "$baseUrl/users",
+        data: {
+          data.toJson(),
+        },
+        options: Options(headers: {"Authorization": "Bearer $token"}),
+      );
+
+      if (response.statusCode == 200) {
+        throw response.data["message"];
       }
     } catch (e) {
       rethrow;
