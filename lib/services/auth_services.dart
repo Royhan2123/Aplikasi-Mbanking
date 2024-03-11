@@ -68,7 +68,6 @@ class AuthServices {
     }
   }
 
-
   // send token crendetial to local
   Future<void> storeCredentialToLocal(UsersModels user) async {
     try {
@@ -83,4 +82,23 @@ class AuthServices {
   }
 
   // get token credential from local
+  Future<SignInModels> getCredentialFromLocal() async {
+    try {
+      const storage = FlutterSecureStorage();
+
+      Map<String, dynamic> value = await storage.readAll();
+
+      if (value["email"] == null || value["password"] == null) {
+        throw "authenticated";
+      } else {
+        final SignInModels data = SignInModels(
+          email: value["email"],
+          password: value["password"],
+        );
+        return data;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
