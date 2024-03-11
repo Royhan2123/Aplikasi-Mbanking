@@ -101,4 +101,17 @@ class AuthServices {
       rethrow;
     }
   }
+
+  Future<String> getToken() async {
+    String token = "";
+
+    const storage = FlutterSecureStorage();
+
+    String? value = await storage.read(key: "token");
+
+    if (value != null) {
+      token = value;
+    }
+    return token;
+  }
 }
