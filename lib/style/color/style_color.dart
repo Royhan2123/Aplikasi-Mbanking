@@ -29,3 +29,4 @@ Color lightGrey = const Color(0xffD9D9D9);
 Color grey = const Color(0xff999999);
 Color lightPrimary = const Color(0xFF7657FF);
 Color redColor = const Color.fromARGB(255, 196, 4, 4);
+Color black = const Color.fromARGB(255, 0, 0, 0);
