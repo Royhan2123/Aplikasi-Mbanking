@@ -30,3 +30,12 @@ Color grey = const Color(0xff999999);
 Color lightPrimary = const Color(0xFF7657FF);
 Color redColor = const Color.fromARGB(255, 196, 4, 4);
 Color black = const Color.fromARGB(255, 0, 0, 0);
+Color white = const Color(0xffFFFFFF);
+
+FontWeight light = FontWeight.w300;
+FontWeight regular = FontWeight.w400;
+FontWeight medium = FontWeight.w500;
+FontWeight semiBold = FontWeight.w600;
+FontWeight bold = FontWeight.w700;
+FontWeight extraBold = FontWeight.w800;
+FontWeight blacks = FontWeight.w900;

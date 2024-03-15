@@ -9,6 +9,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final TextEditingController txtUsername = TextEditingController(text: "");
+  final TextEditingController txtFullname = TextEditingController(text: "");
+  final TextEditingController txtEmail = TextEditingController(text: "");
+  final TextEditingController txtPassword = TextEditingController(text: "");
+
   bool obscureText = false;
   @override
   Widget build(BuildContext context) {
@@ -16,10 +21,18 @@ class _ProfilePageState extends State<ProfilePage> {
       body: ListView(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            margin: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 30,
+            ),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 20,
+            ),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20), color: whiteColor),
+              borderRadius: BorderRadius.circular(20),
+              color: white,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -31,19 +44,29 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 10,
                 ),
                 TextFormField(
-                  controller: txtUserName,
-                  cursorColor: blackColor,
+                  controller: txtUsername,
+                  cursorColor: black,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: greyColor),
-                        borderRadius: BorderRadius.circular(15)),
+                      borderSide: BorderSide(
+                        color: grey,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                    ),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: greyColor,
-                        ),
-                        borderRadius: BorderRadius.circular(15)),
-                    contentPadding: const EdgeInsets.all(12),
+                      borderSide: BorderSide(
+                        color: grey,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.all(
+                      12,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -57,19 +80,29 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 10,
                 ),
                 TextFormField(
-                  controller: txtFullName,
-                  cursorColor: blackColor,
+                  controller: txtFullname,
+                  cursorColor: black,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: greyColor),
-                        borderRadius: BorderRadius.circular(15)),
+                      borderSide: BorderSide(
+                        color: grey,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                    ),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: greyColor,
-                        ),
-                        borderRadius: BorderRadius.circular(15)),
-                    contentPadding: const EdgeInsets.all(12),
+                      borderSide: BorderSide(
+                        color: grey,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.all(
+                      12,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -77,25 +110,38 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 Text(
                   "Email Addres",
-                  style: blackStyle.copyWith(fontSize: 13, fontWeight: medium),
+                  style: blackStyle.copyWith(
+                    fontSize: 13,
+                    fontWeight: medium,
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormField(
                   controller: txtEmail,
-                  cursorColor: blackColor,
+                  cursorColor: black,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: greyColor),
-                        borderRadius: BorderRadius.circular(15)),
+                      borderSide: BorderSide(
+                        color: grey,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                    ),
                     focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: greyColor,
-                        ),
-                        borderRadius: BorderRadius.circular(15)),
-                    contentPadding: const EdgeInsets.all(12),
+                      borderSide: BorderSide(
+                        color: grey,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        15,
+                      ),
+                    ),
+                    contentPadding: const EdgeInsets.all(
+                      12,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -110,21 +156,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 TextFormField(
                   controller: txtPassword,
-                  cursorColor: blackColor,
-                  obscureText: obsucureText,
+                  cursorColor: black,
+                  obscureText: obscureText,
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     suffixIcon: IconButton(
                         onPressed: () {
                           setState(() {
-                            obsucureText = !obsucureText;
+                            obscureText = !obscureText;
                           });
                         },
                         icon: Icon(
-                          obsucureText
-                              ? Icons.visibility_off
-                              : Icons.visibility,
-                          color: obscureText ? grey : blac,
+                          obscureText ? Icons.visibility_off : Icons.visibility,
+                          color: obscureText ? grey : black,
                         )),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: grey),
