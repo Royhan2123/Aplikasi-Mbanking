@@ -1,4 +1,5 @@
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
+import 'package:aplikasi_mbanking/ui/pages/profile_page.dart';
 import 'package:aplikasi_mbanking/widget/shared_value.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -60,21 +61,31 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          Container(
-            width: 85,
-            height: 85,
-            decoration: const BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                  blurRadius: 10,
-                )
-              ],
-              shape: BoxShape.circle,
-              color: Colors.white,
-              image: DecorationImage(
-                image: AssetImage("assets/images/avatar.png"),
-                fit: BoxFit.cover,
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfilePage(),
+                ),
+              );
+            },
+            child: Container(
+              width: 85,
+              height: 85,
+              decoration: const BoxDecoration(
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey,
+                    blurRadius: 10,
+                  )
+                ],
+                shape: BoxShape.circle,
+                color: Colors.white,
+                image: DecorationImage(
+                  image: AssetImage("assets/images/avatar.png"),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
