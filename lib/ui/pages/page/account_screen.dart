@@ -1,3 +1,5 @@
+
+import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:flutter/material.dart';
 
 class AccountScreen extends StatefulWidget {
@@ -13,15 +15,20 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          header(),
+          bodys(),
         ],
       ),
     );
   }
 
-  Widget header() {
+  Widget bodys() {
     return Container(
-      
+      height: 100,
+      width: 100,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: black,
+      ),
     );
   }
 }
