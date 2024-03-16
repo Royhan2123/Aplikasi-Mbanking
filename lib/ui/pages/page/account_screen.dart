@@ -43,9 +43,10 @@ class _AccountScreenState extends State<AccountScreen> {
           Container(
             width: 75,
             height: 75,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
-              image: DecorationImage(
+              color: white,
+              image: const DecorationImage(
                   image: AssetImage("assets/images/avatar.png"),
                   fit: BoxFit.cover),
             ),
