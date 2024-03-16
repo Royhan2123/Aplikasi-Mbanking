@@ -18,13 +18,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.loose,
-        children: [
-          Image.asset("assets/images/background.png"),
-          loginScreen(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          fit: StackFit.loose,
+          children: [
+            Image.asset("assets/images/background.png"),
+            loginScreen(),
+          ],
+        ),
       ),
     );
   }
@@ -35,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       children: [
         headher(),
         const SizedBox(
-          height: 30,
+          height: 20,
         ),
         bodys(),
         foots(),
@@ -47,7 +49,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Align(
       alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(top: 95),
+        padding: const EdgeInsets.only(top: 80),
         child: Text(
           "Register Your Account",
           style: blackStyle.copyWith(
@@ -83,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   fontSize: 15, fontWeight: FontWeight.w500),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             TextFormField(
               controller: txtName,
@@ -125,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   fontSize: 15, fontWeight: FontWeight.w500),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             Focus(
               onFocusChange: (value) {
@@ -178,7 +180,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   fontSize: 15, fontWeight: FontWeight.w500),
             ),
             const SizedBox(
-              height: 15,
+              height: 10,
             ),
             Focus(
               onFocusChange: (value) {
@@ -264,7 +266,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       child: Column(
         children: [
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
           Center(
             child: Text(
@@ -334,7 +336,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ],
           ),
           Container(
-            margin: const EdgeInsets.only(top: 50),
+            margin: const EdgeInsets.only(top: 30),
             alignment: Alignment.bottomCenter,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

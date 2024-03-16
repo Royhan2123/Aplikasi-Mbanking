@@ -13,9 +13,15 @@ class _AccountScreenState extends State<AccountScreen> {
     return Scaffold(
       body: ListView(
         children: [
-          Text("ACCOUNT")
+          header(),
         ],
       ),
+    );
+  }
+
+  Widget header() {
+    return Container(
+      
     );
   }
 }

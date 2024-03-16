@@ -55,19 +55,21 @@ class _HalamanBottomState extends State<HalamanBottom> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: listBottom[currentIndex],
-      bottomNavigationBar: PersistentTabView(
-        context,
-        screens: listBottom,
-        items: bottomBar(),
-        navBarStyle: NavBarStyle.style3,
-        backgroundColor: Colors.white,
-        itemAnimationProperties: const ItemAnimationProperties(
-          duration: Duration(milliseconds: 400),
-          curve: Curves.easeInOutCirc,
+    return SafeArea(
+      child: Scaffold(
+        body: listBottom[currentIndex],
+        bottomNavigationBar: PersistentTabView(
+          context,
+          screens: listBottom,
+          items: bottomBar(),
+          navBarStyle: NavBarStyle.style3,
+          backgroundColor: Colors.white,
+          itemAnimationProperties: const ItemAnimationProperties(
+            duration: Duration(milliseconds: 400),
+            curve: Curves.easeInOutCirc,
+          ),
+          controller: controller,
         ),
-        controller: controller,
       ),
     );
   }

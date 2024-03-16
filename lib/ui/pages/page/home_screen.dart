@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget headher() {
     return Container(
       margin: const EdgeInsets.only(
-        top: 50,
+        top: 15,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ProfilePage(),
+                  builder: (context) => const ProfilPage(),
                 ),
               );
             },
