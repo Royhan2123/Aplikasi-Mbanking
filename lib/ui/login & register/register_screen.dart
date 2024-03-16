@@ -18,13 +18,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        fit: StackFit.loose,
-        children: [
-          Image.asset("assets/images/background.png"),
-          loginScreen(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          fit: StackFit.loose,
+          children: [
+            Image.asset("assets/images/background.png"),
+            loginScreen(),
+          ],
+        ),
       ),
     );
   }
