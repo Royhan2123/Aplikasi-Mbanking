@@ -17,15 +17,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          fit: StackFit.loose,
-          children: [
-            Image.asset("assets/images/background.png"),
-            loginScreen(),
-          ],
-        ),
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.loose,
+        children: [
+          Image.asset("assets/images/background.png"),
+          loginScreen(),
+        ],
       ),
     );
   }

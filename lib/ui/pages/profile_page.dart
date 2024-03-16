@@ -17,11 +17,7 @@ class _ProfilPageState extends State<ProfilPage> {
   bool obsucureText = true;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      minimum: EdgeInsets.all(
-        EdgeInsets.zero.top,
-      ),
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: white,
           elevation: 0,
@@ -197,8 +193,6 @@ class _ProfilPageState extends State<ProfilPage> {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ),);
   }
 }
