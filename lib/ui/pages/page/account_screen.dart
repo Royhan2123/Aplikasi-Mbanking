@@ -1,4 +1,3 @@
-
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +13,10 @@ class _AccountScreenState extends State<AccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 20,
+          vertical: 25,
+        ),
         children: [
           bodys(),
         ],
@@ -22,12 +25,50 @@ class _AccountScreenState extends State<AccountScreen> {
   }
 
   Widget bodys() {
-    return Container(
-      height: 100,
-      width: 100,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: black,
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(
+          15,
+        ),
+      ),
+      color: Colors.white,
+      elevation: 8,
+      shadowColor: lightGrey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            width: 75,
+            height: 75,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              image: DecorationImage(
+                  image: AssetImage("assets/images/avatar.png"),
+                  fit: BoxFit.cover),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: blues,
+            ),
+            onPressed: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, "/loginScreen", (route) => false);
+            },
+            child: const Text(
+              "Logout",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+          )
+        ],
       ),
     );
   }
