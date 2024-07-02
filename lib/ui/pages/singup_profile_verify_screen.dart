@@ -1,11 +1,16 @@
 import 'dart:io';
+import 'package:aplikasi_mbanking/models/register_models.dart';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:aplikasi_mbanking/ui/pages/halaman_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpProfileVerifyScreen extends StatefulWidget {
-  const SignUpProfileVerifyScreen({super.key});
+  final RegisterModels data;
+  const SignUpProfileVerifyScreen({
+    super.key,
+    required this.data,
+  });
 
   @override
   State<SignUpProfileVerifyScreen> createState() =>
@@ -169,10 +174,11 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                     child: InkWell(
                       onTap: () {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HalamanBottom(),
-                            ),);
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HalamanBottom(),
+                          ),
+                        );
                       },
                       child: Text(
                         "Skip",

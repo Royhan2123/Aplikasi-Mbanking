@@ -1,5 +1,10 @@
+import 'package:aplikasi_mbanking/bloc/auth_bloc.dart';
+import 'package:aplikasi_mbanking/models/register_models.dart';
+import 'package:aplikasi_mbanking/ui/pages/signup_profile_photo_screen.dart';
+import 'package:aplikasi_mbanking/widget/shared_value.dart';
 import 'package:flutter/material.dart';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -15,6 +20,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final txtName = TextEditingController(text: "");
   final txtEmail = TextEditingController(text: "");
   final txtPassword = TextEditingController(text: "");
+
+  bool validate() {
+    if (txtEmail.text.isEmpty ||
+        txtName.text.isEmpty ||
+        txtPassword.text.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -232,26 +247,65 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 20,
             ),
             Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  animationDuration: const Duration(seconds: 3),
-                  backgroundColor: blues,
-                  minimumSize: const Size(
-                    350,
-                    35,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  foregroundColor: primary,
-                ),
-                onPressed: () {
-                  Navigator.pushNamed(context, "/signUpProfilePhotoScreen");
+              child: BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthFailed) {
+                    showCustomSnackbar(
+                      context,
+                      state.e,
+                    );
+                  } else if (state is AuthCheckEmailSucces) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SignUpProfilePhotoScreen(
+                          data: RegisterModels(
+                            name: txtName.text,
+                            email: txtEmail.text,
+                            password: txtPassword.text,
+                          ),
+                        ),
+                      ),
+                    );
+                  }
                 },
-                child: const Text(
-                  "Create Account",
-                  style: TextStyle(color: Colors.white),
-                ),
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      animationDuration: const Duration(seconds: 3),
+                      backgroundColor: blues,
+                      minimumSize: const Size(
+                        350,
+                        35,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      foregroundColor: primary,
+                    ),
+                    onPressed: () {
+                      if (validate()) {
+                        context.read<AuthBloc>().add(
+                              AuthCheckEmail(txtEmail.text),
+                            );
+                      } else {
+                        showCustomSnackbar(
+                          context,
+                          "Isi field terlebih dahulu",
+                        );
+                      }
+                    },
+                    child: const Text(
+                      "Create Account",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                },
               ),
             ),
           ],

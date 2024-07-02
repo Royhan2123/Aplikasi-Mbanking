@@ -58,7 +58,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
                 e.toString(),
               ),
             );
-            print(e);
           }
         }
 

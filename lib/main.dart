@@ -8,9 +8,7 @@ import 'package:aplikasi_mbanking/ui/pages/page/account_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/favorit.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/home_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/page/search_screen.dart';
-import 'package:aplikasi_mbanking/ui/pages/signup_profile_photo_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/on_boarding_screen.dart';
-import 'package:aplikasi_mbanking/ui/pages/singup_profile_verify_screen.dart';
 import 'package:aplikasi_mbanking/ui/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,11 +43,6 @@ class MainActivity extends StatelessWidget {
           "/registerScreen": (context) => const RegisterScreen(),
           "/forgotPasswordScreen": (context) => const ForgotPasswordScreen(),
           "/forgotPasswordSucces": (context) => const ForgotPasswordSucces(),
-          "/signUpProfileScreen": (context) => const SignUpProfilePhotoScreen(),
-          "/signUpProfilePhotoScreen": (context) =>
-              const SignUpProfilePhotoScreen(),
-          "/signUpProfileVerifyScreen": (context) =>
-              const SignUpProfileVerifyScreen(),
           "/halamanBottom": (context) => const HalamanBottom(),
         },
         home: const SplashScreen(),

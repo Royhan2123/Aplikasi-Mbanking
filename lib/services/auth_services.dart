@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:aplikasi_mbanking/models/login_models.dart';
 import 'package:aplikasi_mbanking/models/register_models.dart';
 import 'package:aplikasi_mbanking/models/users_models.dart';
@@ -114,7 +116,6 @@ class AuthServices {
       rethrow;
     }
   }
-
   Future<String> getToken() async {
     String token = "";
 
