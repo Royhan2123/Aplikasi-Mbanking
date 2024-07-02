@@ -1,45 +1,46 @@
-import 'package:aplikasi_mbanking/models/signin_model.dart';
-import 'package:aplikasi_mbanking/models/signup_model.dart';
-import 'package:aplikasi_mbanking/models/user_form_model.dart';
-import 'package:aplikasi_mbanking/models/users_model.dart';
+import 'package:aplikasi_mbanking/models/login_models.dart';
+import 'package:aplikasi_mbanking/models/register_models.dart';
+import 'package:aplikasi_mbanking/models/users_models.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class AuthServices {
-  String baseUrl = "https://bwabank.my.id/api/";
+  final url = "https://bwabank.my.id/api";
   final dio = Dio();
 
-  Future<SignUpModels> checkEmail(String email) async {
+  Future<bool> checkEmail(String email) async {
     try {
       final response = await dio.post(
-        "$baseUrl/is-email-exist",
+        "$url/is-email-exist",
         data: {
           "email": email,
         },
       );
 
       if (response.statusCode == 200) {
-        return response.data["is-email-exist"];
+        return response.data["is_email_exist"];
       } else {
         return response.data["errors"];
       }
     } catch (e) {
-      throw e.toString();
+      rethrow;
     }
   }
 
-  Future<UsersModels> signUp(SignUpModels data) async {
+  Future<UsersModels> register(RegisterModels data) async {
     try {
       final response = await dio.post(
-        "$baseUrl/register",
-        data: {
-          data.toJson(),
-        },
+        "$url/register",
+        data: data.toJson(),
       );
 
       if (response.statusCode == 200) {
-        UsersModels user = UsersModels.fromJson(response.data);
-        user = user.copyWith(password: data.password);
+        UsersModels user = UsersModels.fromJson(
+          response.data,
+        );
+        user = user.copyWith(
+          password: data.password,
+        );
         await storeCredentialToLocal(user);
         return user;
       } else {
@@ -50,17 +51,18 @@ class AuthServices {
     }
   }
 
-  Future<UsersModels> signIn(SignInModels data) async {
+  Future<UsersModels> login(LoginModels data) async {
     try {
-      final response = await dio.post(
-        "$baseUrl/login",
-        data: {
-          data.toJson(),
-        },
-      );
+      final response = await dio.post("$url/login", data: {
+        data.toJson(),
+      });
       if (response.statusCode == 200) {
-        UsersModels user = UsersModels.fromJson(response.data);
-        user.copyWith(password: data.password);
+        UsersModels user = UsersModels.fromJson(
+          response.data,
+        );
+        user = user.copyWith(
+          password: data.password,
+        );
         await storeCredentialToLocal(user);
         return user;
       } else {
@@ -71,53 +73,41 @@ class AuthServices {
     }
   }
 
-  // send token crendetial to local
+  // menyimpan token kredensial pengguna seperti token, email, dan password.
   Future<void> storeCredentialToLocal(UsersModels user) async {
     try {
       const storage = FlutterSecureStorage();
-
-      await storage.write(key: "token", value: user.token);
-      await storage.write(key: "email", value: user.email);
-      await storage.write(key: "password", value: user.password);
+      storage.write(
+        key: "token",
+        value: user.token,
+      );
+      storage.write(
+        key: "email",
+        value: user.email,
+      );
+      storage.write(
+        key: "password",
+        value: user.password,
+      );
     } catch (e) {
       rethrow;
     }
   }
 
-  // get token credential from local
-  Future<SignInModels> getCredentialFromLocal() async {
+  // mengambil kredensial pengguna dari penyimpanan local
+  Future<LoginModels> getCredentialFromLocal() async {
     try {
       const storage = FlutterSecureStorage();
 
-      Map<String, dynamic> value = await storage.readAll();
-
+      Map<String, String> value = await storage.readAll();
       if (value["email"] == null || value["password"] == null) {
-        throw "authenticated";
+        throw 'authenticated';
       } else {
-        final SignInModels data = SignInModels(
+        final LoginModels login = LoginModels(
           email: value["email"],
           password: value["password"],
         );
-        return data;
-      }
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  Future<void> updateUser(UserFormModel data) async {
-    final token = await getToken();
-    try {
-      final response = await dio.post(
-        "$baseUrl/users",
-        data: {
-          data.toJson(),
-        },
-        options: Options(headers: {"Authorization": "Bearer $token"}),
-      );
-
-      if (response.statusCode == 200) {
-        throw response.data["message"];
+        return login;
       }
     } catch (e) {
       rethrow;
@@ -128,18 +118,43 @@ class AuthServices {
     String token = "";
 
     const storage = FlutterSecureStorage();
-
-    String? value = await storage.read(key: "token");
+    String? value = await storage.read(
+      key: "token",
+    );
 
     if (value != null) {
       token = value;
     }
+
     return token;
   }
 
-  Future<void> clearAllStorage() async {
+  Future<void> clearStorage() async {
     const storage = FlutterSecureStorage();
-
     storage.deleteAll();
+  }
+
+  Future<void> logout() async {
+    try {
+      final token = await getToken();
+      final response = await dio.post(
+        "$url/logout",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer $token",
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        await clearStorage();
+      } else {
+        throw Exception(
+          response.data["message"],
+        );
+      }
+    } catch (e) {
+      rethrow;
+    }
   }
 }

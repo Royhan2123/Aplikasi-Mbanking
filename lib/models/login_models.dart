@@ -1,8 +1,8 @@
-class SignInModels {
+class LoginModels {
   final String? email;
   final String? password;
 
-  const SignInModels({
+  const LoginModels({
     required this.email,
     required this.password,
   });
@@ -10,5 +10,5 @@ class SignInModels {
   Map<String, dynamic> toJson() => {
         "email": email,
         "password": password,
-      };      
+      };
 }
