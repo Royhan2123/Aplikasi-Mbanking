@@ -1,13 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:aplikasi_mbanking/bloc/auth_bloc.dart';
 import 'package:aplikasi_mbanking/models/register_models.dart';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:aplikasi_mbanking/ui/pages/singup_profile_verify_screen.dart';
-import 'package:aplikasi_mbanking/widget/shared_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpProfilePhotoScreen extends StatefulWidget {
@@ -32,18 +29,12 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
     final imagePicker = ImagePicker();
     final XFile? image = await imagePicker.pickImage(
       source: ImageSource.gallery,
-      imageQuality: 720,
     );
 
     if (image != null) {
       setState(() {
         selectedImage = image;
       });
-    } else {
-      // ignore: avoid_print
-      print(
-        "Gagal mengambil gambar",
-      );
     }
   }
 
@@ -96,9 +87,11 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                       Center(
                         child: InkWell(
                           onTap: () async {
-                            setState(() {
-                              selectImage();
-                            });
+                            setState(
+                              () {
+                                selectImage();
+                              },
+                            );
                           },
                           child: Container(
                             margin: const EdgeInsets.only(top: 45),
@@ -142,123 +135,97 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                     ],
                   ),
                 ),
-              ],
-            ),
-          ),
-          Column(
-            children: [
-              const SizedBox(
-                height: 25,
-              ),
-              Text(
-                "Set your pin",
-                style: blackStyle.copyWith(
-                  fontSize: 14,
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              TextFormField(
-                controller: txtPin,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(6),
-                ],
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 15,
-                ),
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  contentPadding: const EdgeInsets.all(10),
-                  hintText: "enter your pin 6 digit",
-                  hintStyle: const TextStyle(
-                    color: Colors.grey,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: blues,
-                      width: 1.5,
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 25,
                     ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(
-                      color: Colors.black,
-                    ),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                obscureText: true,
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: BlocConsumer<AuthBloc, AuthState>(
-                  listener: (context, state) {
-                    if (state is AuthSucces) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => SignUpProfileVerifyScreen(
-                            data: widget.data.copyWith(
-                              pin: txtPin.text,
-                              profilePicture: selectedImage == null
-                                  ? null
-                                  // ignore: prefer_interpolation_to_compose_strings
-                                  : 'data:image/png;base64,' +
-                                      base64Encode(
-                                        File(selectedImage!.path)
-                                            .readAsBytesSync(),
-                                      ),
-                            ),
-                          ),
-                        ),
-                      );
-                    } else if (state is AuthFailed) {
-                      showCustomSnackbar(
-                        context,
-                        state.e,
-                      );
-                    }
-                  },
-                  builder: (context, state) {
-                    return ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        animationDuration: const Duration(
-                          seconds: 3,
-                        ),
-                        backgroundColor: blues,
-                        minimumSize: const Size(
-                          350,
-                          35,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(
-                            15,
-                          ),
-                        ),
-                        foregroundColor: primary,
+                    Text(
+                      "Set your pin",
+                      style: blackStyle.copyWith(
+                        fontSize: 14,
                       ),
-                      onPressed: () {
-                        if (txtPin.text.isEmpty) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                "Tolong Masukkan Pin Anda",
-                              ),
-                              backgroundColor: Colors.red,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                      ),
+                      child: TextFormField(
+                        controller: txtPin,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(6),
+                        ],
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                        ),
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          contentPadding: const EdgeInsets.all(12),
+                          hintText: "enter your pin 6 digit",
+                          hintStyle: const TextStyle(
+                            color: Colors.grey,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: blues,
+                              width: 1.5,
                             ),
-                          );
-                        } else {
-                          context.read<AuthBloc>().add(
-                                AuthRegister(
-                                  widget.data.copyWith(
-                                    pin: txtPin.text,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        obscureText: true,
+                        keyboardType: TextInputType.number,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          animationDuration: const Duration(
+                            seconds: 3,
+                          ),
+                          backgroundColor: blues,
+                          minimumSize: const Size(
+                            350,
+                            35,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              15,
+                            ),
+                          ),
+                          foregroundColor: primary,
+                        ),
+                        onPressed: () {
+                          if (txtPin.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                  'Field PIN harus diisi',
+                                ),
+                                backgroundColor: redColor,
+                              ),
+                            );
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SignUpProfileVerifyScreen(
+                                  data: widget.data.copyWith(
                                     profilePicture: selectedImage == null
                                         ? null
                                         // ignore: prefer_interpolation_to_compose_strings
@@ -267,23 +234,26 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
                                               File(selectedImage!.path)
                                                   .readAsBytesSync(),
                                             ),
+                                    pin: txtPin.text,
                                   ),
                                 ),
-                              );
-                        }
-                      },
-                      child: const Text(
-                        "Continue",
-                        style: TextStyle(color: Colors.white),
+                              ),
+                            );
+                          }
+                        },
+                        child: const Text(
+                          "Continue",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    );
-                  },
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

@@ -26,16 +26,14 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
 
   selectImage() async {
     final imagePicker = ImagePicker();
-    final XFile? image =
-        await imagePicker.pickImage(source: ImageSource.camera);
+    final XFile? image = await imagePicker.pickImage(
+      source: ImageSource.gallery,
+    );
 
     if (image != null) {
       setState(() {
         selectedImage = image;
       });
-    } else {
-      // ignore: avoid_print
-      print("Gagal mengambil gambar");
     }
   }
 
@@ -61,103 +59,99 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
       ),
-      body: Center(
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 45,
-            ),
-            Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 20,
-              ),
-              padding: const EdgeInsets.symmetric(
-                horizontal: 42,
-                vertical: 20,
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                    color: Colors.grey,
-                    blurRadius: 12,
-                  ),
-                ],
-                borderRadius: BorderRadius.circular(
-                  15,
+      body: BlocConsumer<AuthBloc, AuthState>(
+        listener: (context, state) {
+          if (state is AuthFailed) {
+            showCustomSnackbar(context, state.e);
+          } else if (state is AuthSucces) {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HalamanBottom(),
                 ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Input your identification card",
-                    style: blackStyle.copyWith(
-                        fontSize: 14, fontWeight: FontWeight.bold),
+                (route) => false);
+          }
+        },
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          return Center(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 45,
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                    horizontal: 20,
                   ),
-                  Center(
-                    child: InkWell(
-                      onTap: () async {
-                        setState(() {
-                          selectImage();
-                        });
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 45),
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: lightGrey,
-                          image: selectedImage == null
-                              ? null
-                              : DecorationImage(
-                                  image: FileImage(
-                                    File(selectedImage!.path),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                        ),
-                        child: selectedImage != null
-                            ? null
-                            : Center(
-                                child: Icon(
-                                  Icons.image,
-                                  color: grey,
-                                  size: 50,
-                                ),
-                              ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 42,
+                    vertical: 20,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 12,
                       ),
+                    ],
+                    borderRadius: BorderRadius.circular(
+                      15,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: BlocConsumer<AuthBloc, AuthState>(
-                      listener: (context, state) {
-                        if (state is AuthSucces) {
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const HalamanBottom(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Input your identification card",
+                        style: blackStyle.copyWith(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      Center(
+                        child: InkWell(
+                          onTap: () async {
+                            setState(() {
+                              selectImage();
+                            });
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 45),
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: lightGrey,
+                              image: selectedImage == null
+                                  ? null
+                                  : DecorationImage(
+                                      image: FileImage(
+                                        File(selectedImage!.path),
+                                      ),
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
-                            (route) => false,
-                          );
-                        } else if (state is AuthFailed) {
-                          showCustomSnackbar(
-                            context,
-                            state.e,
-                          );
-                        }
-                      },
-                      builder: (context, state) {
-                        if (state is AuthLoading) {
-                          return const Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        }
-                        return ElevatedButton(
+                            child: selectedImage != null
+                                ? null
+                                : Center(
+                                    child: Icon(
+                                      Icons.image,
+                                      color: grey,
+                                      size: 50,
+                                    ),
+                                  ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             animationDuration: const Duration(seconds: 3),
                             backgroundColor: blues,
@@ -171,13 +165,13 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                             foregroundColor: primary,
                           ),
                           onPressed: () {
-                            if (validate()) {
+                            if (selectedImage == null) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    "Tolong Masukkan Gambar Anda",
+                                SnackBar(
+                                  content: const Text(
+                                    'Gambar tidak boleh kosong',
                                   ),
-                                  backgroundColor: Colors.red,
+                                  backgroundColor: redColor,
                                 ),
                               );
                             } else {
@@ -185,10 +179,7 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                                     AuthRegister(
                                       widget.data.copyWith(
                                         ktp:
-                                            'data:image/png;base64,${base64Encode(
-                                          File(selectedImage!.path)
-                                              .readAsBytesSync(),
-                                        )}',
+                                            'data:image/png;base64,${base64Encode(File(selectedImage!.path).readAsBytesSync())}',
                                       ),
                                     ),
                                   );
@@ -198,38 +189,38 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                             "Continue",
                             style: TextStyle(color: Colors.white),
                           ),
-                        );
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const HalamanBottom(),
-                          ),
-                        );
-                      },
-                      child: Text(
-                        "Skip",
-                        style: greyStyle.copyWith(
-                            fontSize: 19, fontWeight: FontWeight.w600),
+                        ),
                       ),
-                    ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HalamanBottom(),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            "Skip",
+                            style: greyStyle.copyWith(
+                                fontSize: 19, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }
