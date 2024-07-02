@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:aplikasi_mbanking/bloc/auth_bloc.dart';
 import 'package:aplikasi_mbanking/models/register_models.dart';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
 import 'package:aplikasi_mbanking/ui/pages/halaman_bottom.dart';
+import 'package:aplikasi_mbanking/widget/shared_value.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SignUpProfileVerifyScreen extends StatefulWidget {
@@ -18,9 +22,6 @@ class SignUpProfileVerifyScreen extends StatefulWidget {
 }
 
 class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
-  final txtPin = TextEditingController(
-    text: "",
-  );
   XFile? selectedImage;
 
   selectImage() async {
@@ -133,38 +134,72 @@ class _SignUpProfileVerifyScreenState extends State<SignUpProfileVerifyScreen> {
                     height: 20,
                   ),
                   Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        animationDuration: const Duration(seconds: 3),
-                        backgroundColor: blues,
-                        minimumSize: const Size(
-                          350,
-                          35,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        foregroundColor: primary,
-                      ),
-                      onPressed: () {
-                        if (validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                "Tolong Masukkan Gambar Anda",
-                              ),
-                              backgroundColor: Colors.red,
+                    child: BlocConsumer<AuthBloc, AuthState>(
+                      listener: (context, state) {
+                        if (state is AuthSucces) {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HalamanBottom(),
                             ),
+                            (route) => false,
                           );
-                        } else {
-                          Navigator.pushNamed(
-                              context, "/signupProfilePhotoScreen");
+                        } else if (state is AuthFailed) {
+                          showCustomSnackbar(
+                            context,
+                            state.e,
+                          );
                         }
                       },
-                      child: const Text(
-                        "Continue",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      builder: (context, state) {
+                        if (state is AuthLoading) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                        return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            animationDuration: const Duration(seconds: 3),
+                            backgroundColor: blues,
+                            minimumSize: const Size(
+                              350,
+                              35,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            foregroundColor: primary,
+                          ),
+                          onPressed: () {
+                            if (validate()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "Tolong Masukkan Gambar Anda",
+                                  ),
+                                  backgroundColor: Colors.red,
+                                ),
+                              );
+                            } else {
+                              context.read<AuthBloc>().add(
+                                    AuthRegister(
+                                      widget.data.copyWith(
+                                        ktp:
+                                            'data:image/png;base64,${base64Encode(
+                                          File(selectedImage!.path)
+                                              .readAsBytesSync(),
+                                        )}',
+                                      ),
+                                    ),
+                                  );
+                            }
+                          },
+                          child: const Text(
+                            "Continue",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        );
+                      },
                     ),
                   ),
                   const SizedBox(
