@@ -41,7 +41,9 @@ class _SignUpProfilePhotoScreenState extends State<SignUpProfilePhotoScreen> {
       });
     } else {
       // ignore: avoid_print
-      print("Gagal mengambil gambar");
+      print(
+        "Gagal mengambil gambar",
+      );
     }
   }
 
