@@ -53,9 +53,10 @@ class AuthServices {
 
   Future<UsersModels> login(LoginModels data) async {
     try {
-      final response = await dio.post("$url/login", data: {
-        data.toJson(),
-      });
+      final response = await dio.post(
+        "$url/login",
+        data: data.toJson(),
+      );
       if (response.statusCode == 200) {
         UsersModels user = UsersModels.fromJson(
           response.data,

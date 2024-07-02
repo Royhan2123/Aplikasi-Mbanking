@@ -1,8 +1,14 @@
+import 'package:aplikasi_mbanking/bloc/auth_bloc.dart';
+import 'package:aplikasi_mbanking/models/login_models.dart';
 import 'package:aplikasi_mbanking/style/color/style_color.dart';
+import 'package:aplikasi_mbanking/widget/shared_value.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({
+    super.key,
+  });
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -12,8 +18,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool obsucred = true;
   bool colorGmail = false;
   bool colorPassword = false;
-  final txtEmail = TextEditingController(text: "");
-  final txtPassword = TextEditingController(text: "");
+  final txtEmail = TextEditingController(
+    text: "",
+  );
+  final txtPassword = TextEditingController(
+    text: "",
+  );
+
+  bool validate() {
+    if (txtEmail.text.isEmpty || txtPassword.text.isEmpty) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -189,27 +207,64 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 20,
             ),
             Center(
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  animationDuration: const Duration(seconds: 3),
-                  backgroundColor: blues,
-                  minimumSize: const Size(
-                    350,
-                    35,
-                  ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  foregroundColor: primary,
-                ),
-                onPressed: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, "/halamanBottom", (route) => false);
+              child: BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthSucces) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, "/halamanBottom", (route) => false);
+                  } else if (state is AuthFailed) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.red,
+                        content: Text(
+                          state.e,
+                        ),
+                      ),
+                    );
+                  }
                 },
-                child: const Text(
-                  "Login",
-                  style: TextStyle(color: Colors.white),
-                ),
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      animationDuration: const Duration(seconds: 3),
+                      backgroundColor: blues,
+                      minimumSize: const Size(
+                        350,
+                        35,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      foregroundColor: primary,
+                    ),
+                    onPressed: () {
+                      if (validate()) {
+                        context.read<AuthBloc>().add(
+                              AuthLogin(
+                                LoginModels(
+                                  email: txtEmail.text,
+                                  password: txtPassword.text,
+                                ),
+                              ),
+                            );
+                      } else {
+                        showCustomSnackbar(
+                          context,
+                          "Semua Field harus di isi",
+                        );
+                      }
+                    },
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  );
+                },
               ),
             ),
             Align(
